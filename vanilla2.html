@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+    <body>
+        <h1 style="color: goldenrod;">Today's when I first saw color and came alive, here is some advice.</h1>
+        <h1 class="advice" style="color: grey;"></h1>
+        <button class="btn">Get Advice</button>
+        <p >You clicked for advice <strong class="count"> </strong> times.</p>
+
+
+        <script>
+            btnEl =  document.querySelector(".btn");
+            adviceEl = document.querySelector(".advice");
+            countEl = document.querySelector(".count");
+
+
+            const getAdvice = async function(){
+                const res = await fetch("https://api.adviceslip.com/advice");
+                const data = await res.json();
+
+                console.log(data.slip.advice)
+               advice = data.slip.advice;
+               count = count + 1;
+               
+               adviceEl.textContent = advice;
+               countEl.textContent = count;
+
+                           }
+                let count = 0;
+                let advice;
+
+            
+            btnEl.addEventListener("click", getAdvice);
+        </script>
+    </body>
+
+</html>
