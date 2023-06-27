@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+
+<html>
+    <body>
+        <h1 class="advice"></h1>
+        <button class="btn">Get Advice</button>
+        <p>Clicked for advice <strong class="count"></strong> times.</p>
+
+        <script>
+            adviceEl = document.querySelector(".advice");
+            btnEl = document.querySelector(".btn");
+            countEl = document.querySelector(".count");
+
+           const getAdvice = async function(){
+            const res = await fetch("https://api.adviceslip.com/advice");
+            const data = await res.json();
+
+            advice = data.slip.advice;
+            count = count + 1;
+
+            adviceEl.textContent = advice;
+            countEl.textContent = count;
+
+           }
+           
+           let count = 0;
+           let advice;
+
+           btnEl.addEventListener("click", getAdvice);
+        </script>
+    </body>
+</html>
